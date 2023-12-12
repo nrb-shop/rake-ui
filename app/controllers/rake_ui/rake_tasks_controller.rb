@@ -18,6 +18,10 @@ module RakeUi
         @rake_tasks = @rake_tasks.select(&:internal_task?)
       end
 
+      @rake_tasks = @rake_tasks.select do |task|
+        task.to_s.include? "nrb:"
+      end
+
       respond_to do |format|
         format.html
         format.json do
